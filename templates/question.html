@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block title %}Question 1{% endblock %}
+
+{% block content %}
+    {% if num < num_of_questions - 1 %}
+    <form action="/answer/{{ num }}" methods="post">
+        <p>{{ questions[num].question }}</p>
+        {% if questions[num].choices %}
+            <input type="radio" name="choice" value="{{ questions[num].choices[0] }}">
+            <label for="choice">{{ questions[num].choices[0] }}</label>
+
+            <input type="radio" name="choice" value="{{ questions[num].choices[1] }}">
+            <label for="choice">{{ questions[num].choices[1] }}</label>
+        {% endif %}
+    <br>
+    <button type="submit">Submit</button>
+    </form>
+    {% else %}
+    <form action="/thanks">
+        <p>{{ questions[num].question }}</p>
+        {% if questions[num].choices %}
+            <input type="radio" name="choice" value="{{ questions[num].choices[0] }}">
+            <label for="choice">{{ questions[num].choices[0] }}</label>
+
+            <input type="radio" name="choice" value="{{ questions[num].choices[1] }}">
+            <label for="choice">{{ questions[num].choices[1] }}</label>
+        {% endif %}
+    <br>
+    <button type="submit">Submit</button>
+    </form>
+    {% endif %}
+
+{% endblock %}

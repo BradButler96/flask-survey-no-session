@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block title %}Survey{% endblock %}
+
+{% block content %}
+<h1>{{survey.title}}</h1>
+<h3>{{survey.instructions}}</h3>
+
+{% if res_len <= 3 %}
+    <form action="/question/{{ res_len }}">
+        <button type="submit">Begin!</button>
+    </form>
+{% endif %}
+{% endblock %}
