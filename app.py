@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, redirect, flash, jsonify, url_for, session
+from flask import Flask, request, render_template, redirect, flash, jsonify, url_for
 from flask_debugtoolbar import DebugToolbarExtension
 from surveys import *
 
@@ -10,7 +10,6 @@ debug = DebugToolbarExtension(app)
 
 response = []
 num_of_questions = len(questions)
-
 
 @app.route('/')
 def load_survey():
@@ -30,17 +29,17 @@ def question(num):
 
 @app.route('/answer/<int:num>')
 def answer(num):
-    session['choice'] = request.args.get('choice')
-    if session['choice'] == None:
+    choice = request.args.get('choice')
+    if choice == None:
         flash('Please answer the question')
         return redirect(url_for('.question', num=num))
     else:
         if num < 3:
             num += 1
-            response.append(session['choice'])
+            response.append(choice)
             return redirect(url_for('.question', num=num))
         else:
-            response.append(session['choice'])
+            response.append(choice)
             return redirect('/thanks')
 
 
