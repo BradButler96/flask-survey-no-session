@@ -9,5 +9,9 @@
     <form action="/question/{{ res_len }}">
         <button type="submit">Begin!</button>
     </form>
+{% else %}
+    <form action="/thanks">
+        <button type="submit">Begin!</button>
+    </form>
 {% endif %}
 {% endblock %}
